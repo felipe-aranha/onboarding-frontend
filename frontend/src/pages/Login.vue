@@ -59,6 +59,13 @@ export default {
 </script>
 
 <style lang="scss">
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+}
+
 .page-container {
   width: 100%;
   height: 100%;
