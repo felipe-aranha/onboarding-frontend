@@ -1,7 +1,7 @@
 <template>
   <aside class="menu-container">
     <img class="logo" src="@/assets/images/logo-onboarding-2.png" />
-    <Perfil photo="" ame="Daniel" />
+    <Perfil photo="" name="Daniel" />
     <nav class="navigation">
       <MenuItem to="/auth/dashboard" label="Dashboard" icon="scale.png" />
       <MenuItem to="/auth/documents" label="Documentos" icon="document.png" />
