@@ -27,6 +27,7 @@ export default {
     appearance: none;
     border-radius: 5px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.29);
+    cursor: pointer;
   }
 
   > .box:checked {
@@ -45,6 +46,7 @@ export default {
     margin-left: 15px;
     font-size: 15px;
     color: $color-light-grey;
+    cursor: pointer;
   }
 }
 </style>

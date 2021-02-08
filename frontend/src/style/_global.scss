@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+
 * {
   margin: 0;
   border: 0;
@@ -14,9 +16,15 @@ p,
 textarea,
 button,
 input,
-label {
-  font-family: "Raleway" sans-serif;
+label,
+a {
+  font-family: "Raleway", sans-serif;
   color: black;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+a,
+button {
+  cursor: pointer;
 }

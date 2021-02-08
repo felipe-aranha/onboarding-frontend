@@ -2,12 +2,20 @@
   <div class="container">
     <p class="code">404</p>
     <p class="message">A página não existe.</p>
+    <button @click="back" class="back">Voltar</button>
   </div>
 </template>
 
 <script>
+function back() {
+  this.$router.back();
+}
+
 export default {
-  name: "PageNotFound"
+  name: "PageNotFound",
+  methods: {
+    back
+  }
 };
 </script>
 
@@ -29,6 +37,13 @@ export default {
   > .message {
     font-size: 24px;
     margin-top: 20px;
+  }
+
+  > .back {
+    margin-top: 30px;
+    font-size: 16px;
+    color: black;
+    background: transparent;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <img src="../assets/images/logo-onboarding.png" class="logo" />
+    <img src="@/assets/images/logo-onboarding.png" class="logo" />
     <form method="post" action="" class="form-container">
       <Input
         type="text"
@@ -20,14 +20,14 @@
       </div>
     </form>
     <div class="brand-container">
-      <img class="avanter-logo" src="../assets/images/logo-avanter.png" />
+      <img class="avanter-logo" src="@/assets/images/logo-avanter.png" />
     </div>
   </div>
 </template>
 
 <script>
-import Input from "../components/Input.vue";
-import Checkbox from "../components/Checkbox.vue";
+import Input from "@/components/Input.vue";
+import Checkbox from "@/components/Checkbox.vue";
 
 function onChangeEmail(event) {
   const { value } = event.target;

@@ -1,11 +1,11 @@
 <template>
   <div class="input-container">
-    <img class="icon" :src="require(`../assets/icons/${source}`)" />
+    <img class="icon" :src="require(`@/assets/icons/${source}`)" />
     <input
       :type="type"
       class="field"
       :placeholder="placeholder"
-      :oninput="onChange"
+      @input="onChange"
     />
   </div>
 </template>
