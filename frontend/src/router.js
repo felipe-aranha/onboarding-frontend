@@ -10,6 +10,11 @@ const authRoutes = [
     path: "dashboard",
     name: "Dashboard",
     component: Dashboard
+  },
+  {
+    path: "documents",
+    name: "Documents",
+    component: Dashboard
   }
 ];
 

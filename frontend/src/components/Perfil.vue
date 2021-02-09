@@ -25,6 +25,7 @@ export default {
 <style lang="scss">
 .perfil-container {
   margin-top: 60px;
+  margin-left: 30px;
   display: flex;
   align-items: center;
 
