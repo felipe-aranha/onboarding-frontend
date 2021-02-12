@@ -1,5 +1,5 @@
 <template>
-  <div class="perfil-container">
+  <div v-if="!collapse" class="perfil-container">
     <img v-if="!photo" class="photo" src="@/assets/images/perfil.png" />
     <img v-if="photo" class="photo" :src="photo" />
     <div class="column">
@@ -10,6 +10,7 @@
       </button>
     </div>
   </div>
+  <div v-if="collapse" class="fill-area"></div>
 </template>
 
 <script>
@@ -18,6 +19,11 @@ export default {
   props: {
     photo: String,
     name: String
+  },
+  computed: {
+    collapse() {
+      return this.$store.state.menu.collapse;
+    }
   }
 };
 </script>
@@ -65,5 +71,10 @@ export default {
       }
     }
   }
+}
+
+.fill-area {
+  width: 100%;
+  height: 78px;
 }
 </style>

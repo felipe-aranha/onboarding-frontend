@@ -1,6 +1,6 @@
 <template>
   <section name="header" class="header-container">
-    <button class="button-container">
+    <button class="button-container" @click="toggleMenu">
       <img src="@/assets/icons/menu.svg" class="menu-sandwich" />
     </button>
     <div class="navigation-container">
@@ -19,10 +19,17 @@
 <script>
 import NotifyIndicator from "@/components/NotifyIndicator";
 
+import { mapActions } from "vuex";
+
 export default {
   name: "Header",
   components: {
     NotifyIndicator
+  },
+  methods: {
+    ...mapActions({
+      toggleMenu: "menu/toggleMenu"
+    })
   }
 };
 </script>

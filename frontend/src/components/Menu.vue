@@ -1,6 +1,15 @@
 <template>
   <aside class="menu-container">
-    <img class="logo" src="@/assets/images/logo-onboarding-2.png" />
+    <img
+      v-if="!collapse"
+      class="logo"
+      src="@/assets/images/logo-onboarding-2.png"
+    />
+    <img
+      v-if="collapse"
+      class="logo-collapsed"
+      src="@/assets/images/logo-collapsed.png"
+    />
     <Perfil photo="" name="Daniel" />
     <nav class="navigation">
       <MenuItem
@@ -123,7 +132,7 @@ const paramsSubMenu = [
   }
 ];
 
-function onClickMenu(event) {
+function onClickMenu(event, childrens) {
   const target = event.target.classList.contains("item-container")
     ? event.target
     : event.target.parentElement;
@@ -133,6 +142,8 @@ function onClickMenu(event) {
   if (menu !== this.menuSelected) this.subMenuSelected = "";
   if (menu === this.menuSelected) this.menuSelected = "";
   else this.menuSelected = menu;
+
+  if (!childrens) this.$router.push(menu);
 }
 
 function onClickSubMenu(event, childrens) {
@@ -162,6 +173,11 @@ export default {
       menuSelected: "dashboard",
       subMenuSelected: ""
     };
+  },
+  computed: {
+    collapse() {
+      return this.$store.state.menu.collapse;
+    }
   }
 };
 </script>
@@ -176,6 +192,12 @@ export default {
   > .logo {
     width: 158px;
     margin-left: 30px;
+    object-fit: contain;
+  }
+
+  > .logo-collapsed {
+    width: 100%;
+    height: 58.38px;
     object-fit: contain;
   }
 

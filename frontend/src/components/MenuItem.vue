@@ -2,43 +2,43 @@
   <button
     v-if="!selected && !childrens"
     class="item-container"
-    @click="onClick"
+    @click="event => onClick(event, childrens)"
     :data-menu="name"
   >
     <img class="icon" :src="require(`@/assets/icons/${icon}`)" />
-    <p class="label">{{ label }}</p>
+    <p v-if="!collapse" class="label">{{ label }}</p>
   </button>
 
   <button
     v-if="selected && !childrens"
     class="item-container selected"
-    @click="onClick"
+    @click="event => onClick(event, childrens)"
     :data-menu="name"
   >
     <div class="badge"></div>
     <img class="icon" :src="require(`@/assets/icons/${icon}`)" />
-    <p class="label">{{ label }}</p>
+    <p v-if="!collapse" class="label">{{ label }}</p>
   </button>
 
   <button
     v-if="!selected && childrens?.length > 0"
     class="item-container"
-    @click="onClick"
+    @click="event => onClick(event, childrens)"
     :data-menu="name"
   >
     <img class="icon" :src="require(`@/assets/icons/${icon}`)" />
-    <p class="label">{{ label }}</p>
+    <p v-if="!collapse" class="label">{{ label }}</p>
   </button>
 
   <button
     v-if="selected && childrens?.length > 0"
     class="item-container selected"
-    @click="onClick"
+    @click="event => onClick(event, childrens)"
     :data-menu="name"
   >
     <div class="badge"></div>
     <img class="icon" :src="require(`@/assets/icons/${icon}`)" />
-    <p class="label">{{ label }}</p>
+    <p v-if="!collapse" class="label">{{ label }}</p>
   </button>
   <div v-if="selected && childrens?.length > 0" class="submenu">
     <button
@@ -70,6 +70,11 @@ export default {
     onClick: Function,
     onClickSubMenu: Function,
     subMenuSelected: String
+  },
+  computed: {
+    collapse() {
+      return this.$store.state.menu.collapse;
+    }
   }
 };
 </script>

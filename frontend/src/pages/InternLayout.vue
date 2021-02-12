@@ -1,5 +1,17 @@
 <template>
-  <div class="layout-container">
+  <div v-if="!collapse" class="layout-container">
+    <div class="header-area">
+      <Header />
+    </div>
+    <div class="menu-area">
+      <Menu />
+    </div>
+    <div class="workspace-area">
+      <router-view></router-view>
+    </div>
+  </div>
+
+  <div v-if="collapse" class="layout-container menu-small">
     <div class="header-area">
       <Header />
     </div>
@@ -21,6 +33,11 @@ export default {
   components: {
     Header,
     Menu
+  },
+  computed: {
+    collapse() {
+      return this.$store.state.menu.collapse;
+    }
   }
 };
 </script>
@@ -47,5 +64,9 @@ export default {
   > .workspace-area {
     grid-area: workspace;
   }
+}
+
+.menu-small {
+  grid-template-columns: 90px 1fr;
 }
 </style>
