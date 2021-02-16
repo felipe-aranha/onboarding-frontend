@@ -16,62 +16,62 @@
         name="dashboard"
         label="Dashboard"
         icon="scale.png"
-        :selected="this.menuSelected === 'dashboard'"
+        :selected="menuSelected === 'dashboard'"
         :onClick="onClickMenu"
       />
       <MenuItem
         name="documents"
         label="Documentos"
         icon="document.png"
-        :selected="this.menuSelected === 'documents'"
+        :selected="menuSelected === 'documents'"
         :onClick="onClickMenu"
         :childrens="documentsSubMenu"
         :onClickSubMenu="onClickSubMenu"
-        :subMenuSelected="this.subMenuSelected"
+        :subMenuSelected="subMenuSelected"
       />
       <MenuItem
         name="register"
         label="Cadastros"
         icon="users.png"
-        :selected="this.menuSelected === 'register'"
+        :selected="menuSelected === 'register'"
         :onClick="onClickMenu"
       />
       <MenuItem
         name="searchs"
         label="Consultas"
         icon="search-green.png"
-        :selected="this.menuSelected === 'searchs'"
+        :selected="menuSelected === 'searchs'"
         :onClick="onClickMenu"
       />
       <MenuItem
         name="reports"
         label="Relatórios"
         icon="report.png"
-        :selected="this.menuSelected === 'reports'"
+        :selected="menuSelected === 'reports'"
         :onClick="onClickMenu"
       />
       <MenuItem
         name="gear"
         label="Configurações"
         icon="gear.png"
-        :selected="this.menuSelected === 'gear'"
+        :selected="menuSelected === 'gear'"
         :onClick="onClickMenu"
       />
       <MenuItem
         name="params"
         label="Parâmetros"
         icon="database.png"
-        :selected="this.menuSelected === 'params'"
+        :selected="menuSelected === 'params'"
         :onClick="onClickMenu"
         :childrens="paramsSubMenu"
         :onClickSubMenu="onClickSubMenu"
-        :subMenuSelected="this.subMenuSelected"
+        :subMenuSelected="subMenuSelected"
       />
       <MenuItem
         name="help"
         label="Ajuda"
         icon="help.png"
-        :selected="this.menuSelected === 'help'"
+        :selected="menuSelected === 'help'"
         :onClick="onClickMenu"
       />
     </nav>
@@ -139,18 +139,28 @@ function onClickMenu(event, childrens) {
 
   const { menu } = target.dataset;
 
-  if (menu !== this.menuSelected) this.subMenuSelected = "";
-  if (menu === this.menuSelected) this.menuSelected = "";
-  else this.menuSelected = menu;
+  const menuSelected = this.$store.state.menu.menuSelected;
+
+  if (menu !== menuSelected)
+    this.$store.dispatch({ type: "menu/setSubMenu", payload: { subMenu: "" } });
+  if (menu === menuSelected)
+    this.$store.dispatch({ type: "menu/setMenu", payload: { menu: "" } });
+  else this.$store.dispatch({ type: "menu/setMenu", payload: { menu } });
 
   if (!childrens) this.$router.push(menu);
+
+  const collapse = this.$store.state.menu.collapse;
+  if (childrens && collapse) this.$store.dispatch("menu/toggleMenu");
 }
 
 function onClickSubMenu(event, childrens) {
   const target = event.target.classList.contains("item")
     ? event.target
     : event.target.parentElement;
-  this.subMenuSelected = target.dataset.name;
+  this.$store.dispatch({
+    type: "menu/setSubMenu",
+    payload: { subMenu: target.dataset.name }
+  });
 
   const submenu = childrens.find(one => one.label === target.dataset.name);
   this.$router.push(submenu.to);
@@ -169,14 +179,18 @@ export default {
   data: function() {
     return {
       documentsSubMenu,
-      paramsSubMenu,
-      menuSelected: "dashboard",
-      subMenuSelected: ""
+      paramsSubMenu
     };
   },
   computed: {
     collapse() {
       return this.$store.state.menu.collapse;
+    },
+    menuSelected() {
+      return this.$store.state.menu.menuSelected;
+    },
+    subMenuSelected() {
+      return this.$store.state.menu.submenuSelected;
     }
   }
 };

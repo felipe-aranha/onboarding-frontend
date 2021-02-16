@@ -40,7 +40,7 @@
     <img class="icon" :src="require(`@/assets/icons/${icon}`)" />
     <p v-if="!collapse" class="label">{{ label }}</p>
   </button>
-  <div v-if="selected && childrens?.length > 0" class="submenu">
+  <div v-if="selected && childrens?.length > 0 && !collapse" class="submenu">
     <button
       v-for="item in childrens"
       v-bind:key="item.label"
