@@ -1,9 +1,11 @@
 import { createStore } from "vuex";
 
 import menu from "./modules/menu";
+import timeMenu from "./modules/timeMenu";
 
 const modules = {
-  menu
+  menu,
+  timeMenu
 };
 
 const state = {};

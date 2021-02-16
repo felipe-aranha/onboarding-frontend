@@ -7,7 +7,12 @@
       <Menu />
     </div>
     <div class="workspace-area">
-      <router-view></router-view>
+      <main class="page-container">
+        <div class="blue-board"></div>
+        <div class="content">
+          <router-view></router-view>
+        </div>
+      </main>
     </div>
   </div>
 
@@ -19,7 +24,12 @@
       <Menu />
     </div>
     <div class="workspace-area">
-      <router-view></router-view>
+      <main class="page-container">
+        <div class="blue-board"></div>
+        <div class="content">
+          <router-view></router-view>
+        </div>
+      </main>
     </div>
   </div>
 </template>
@@ -63,6 +73,30 @@ export default {
 
   > .workspace-area {
     grid-area: workspace;
+  }
+
+  > .workspace-area > .page-container {
+    width: calc(100% - 120px);
+    position: relative;
+    padding: 0 60px;
+    padding-top: 15px;
+    display: block;
+    height: 100%;
+    background: $color-bg-auth;
+  }
+
+  > .workspace-area > .page-container > .blue-board {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 220px;
+    background: $color-dark-blue;
+  }
+
+  > .workspace-area > .page-container > .content {
+    position: relative;
+    z-index: 50;
   }
 }
 

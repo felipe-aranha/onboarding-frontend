@@ -1,7 +1,7 @@
 import { TOGGLE_MENU } from "./types";
 
 const state = {
-  collapse: true
+  collapse: false
 };
 
 const mutations = {
