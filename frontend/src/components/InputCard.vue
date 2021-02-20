@@ -1,13 +1,17 @@
 <template>
   <div v-if="!width" class="container">
     <label class="field-label" :for="label">{{ label }}</label>
-    <input :id="label" class="field-container" :placeholder="placeholder" />
+    <input
+      :id="label || randomNumber()"
+      class="field-container"
+      :placeholder="placeholder"
+    />
   </div>
 
   <div v-if="width" class="container" :style="`width: ${width}`">
     <label class="field-label" :for="label">{{ label }}</label>
     <input
-      :id="label"
+      :id="label || randomNumber()"
       :class="label ? 'field-container' : 'field-container margin-14'"
       :placeholder="placeholder"
     />
@@ -15,12 +19,20 @@
 </template>
 
 <script>
+function randomNumber() {
+  const random = () => Math.floor(Math.random() * 100);
+  return random() * random();
+}
+
 export default {
   name: "InputCard",
   props: {
     label: String,
     placeholder: String,
     width: String
+  },
+  methods: {
+    randomNumber
   }
 };
 </script>
