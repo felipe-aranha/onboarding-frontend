@@ -4,7 +4,7 @@ import Login from "@/pages/Login.vue";
 import PageNotFound from "@/pages/PageNotFound.vue";
 import Dashboard from "@/pages/Dashboard.vue";
 import InternLayout from "@/pages/InternLayout.vue";
-import RegisterCompany from "@/pages/RegisterCompany.vue";
+import RegisterCompany from "@/pages/RegisterCompany/Index.vue";
 
 const authRoutes = [
   {

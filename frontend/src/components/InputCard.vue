@@ -28,6 +28,7 @@ export default {
 <style scoped lang="scss">
 .container {
   width: 100%;
+  height: max-content;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

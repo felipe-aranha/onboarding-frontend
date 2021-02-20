@@ -2,39 +2,8 @@
   <h1 class="title">Cadastro - Empresas</h1>
   <LabelList :data="menus" :onChange="setMenu" labelColor="white" />
   <section name="register-form" class="card-container">
-    <div class="title-container">
-      <h2 class="title">GERAL</h2>
-      <div class="bar"></div>
-    </div>
-    <div class="row">
-      <InputCard label="CNPJ" placeholder="CNPJ" width="265px" />
-      <InputCard
-        label="Inscrição estadual"
-        placeholder="Inscrição estadual"
-        width="265px"
-      />
-    </div>
-    <div class="row">
-      <InputCard label="Razão Social" placeholder="Razão Social" />
-      <InputCard label="Nome fantasia" placeholder="Nome fantasia" />
-    </div>
-    <div class="row">
-      <InputCard label="Número" placeholder="00" width="75px" />
-      <InputCard label="Complemento" placeholder="Complemento" />
-      <InputCard label="Bairro" placeholder="Bairro" width="265px" />
-    </div>
-    <div class="row">
-      <InputCard label="Cidade" placeholder="Cidade" />
-      <InputCard label="Estado" placeholder="UF" width="75px" />
-      <InputCard label="País" placeholder="País" width="169px" />
-    </div>
-    <div class="row">
-      <InputCard label="Telefone" placeholder="" width="75px" />
-      <InputCard label="" placeholder="" width="169px" />
-      <InputCard label="Celular" placeholder="" width="75px" />
-      <InputCard label="" placeholder="" width="169px" />
-      <InputCard label="E-mail" placeholder="" />
-    </div>
+    <General v-if="isMenuSelected('Geral')" />
+    <Layout v-if="isMenuSelected('Layout')" />
   </section>
   <section class="button-container" name="button-container">
     <button class="common-button filled-button">Salvar</button>
@@ -44,7 +13,8 @@
 
 <script>
 import LabelList from "@/components/LabelList.vue";
-import InputCard from "@/components/InputCard.vue";
+import General from "./components/General.vue";
+import Layout from "./components/Layout.vue";
 
 const menus = [
   {
@@ -78,14 +48,22 @@ function setMenu(name) {
   this.menus = newMenus;
 }
 
+function isMenuSelected(name) {
+  const selected = this.menus.find(one => one.selected);
+
+  return selected.name === name;
+}
+
 export default {
   name: "RegisterCompany",
   components: {
     LabelList,
-    InputCard
+    General,
+    Layout
   },
   methods: {
-    setMenu
+    setMenu,
+    isMenuSelected
   },
   data: function() {
     return {
@@ -111,35 +89,6 @@ export default {
   height: 500px;
   background: white;
   border-radius: 15px;
-}
-
-.card-container > .title-container {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 25px;
-}
-
-.card-container > .title-container > .title {
-  font-size: "Raleway";
-  font-size: 18px;
-  font-weight: normal;
-  color: $color-grey-medium;
-  text-transform: uppercase;
-}
-
-.card-container > .title-container > .bar {
-  margin-top: 10px;
-  width: 40px;
-  height: 3px;
-  background: $color-green;
-}
-
-.card-container > .row {
-  display: flex;
-
-  & + .row {
-    margin-top: 15px;
-  }
 }
 
 .button-container {
