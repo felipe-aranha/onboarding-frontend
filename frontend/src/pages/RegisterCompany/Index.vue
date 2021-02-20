@@ -4,6 +4,7 @@
   <section name="register-form" class="card-container">
     <General v-if="isMenuSelected('Geral')" />
     <Layout v-if="isMenuSelected('Layout')" />
+    <APIs v-if="isMenuSelected(`API's`)" />
   </section>
   <section class="button-container" name="button-container">
     <button class="common-button filled-button">Salvar</button>
@@ -15,6 +16,7 @@
 import LabelList from "@/components/LabelList.vue";
 import General from "./components/General.vue";
 import Layout from "./components/Layout.vue";
+import APIs from "./components/APIs.vue";
 
 const menus = [
   {
@@ -26,7 +28,7 @@ const menus = [
     selected: false
   },
   {
-    name: "API`s",
+    name: "API's",
     selected: false
   }
 ];
@@ -59,7 +61,8 @@ export default {
   components: {
     LabelList,
     General,
-    Layout
+    Layout,
+    APIs
   },
   methods: {
     setMenu,
@@ -86,7 +89,7 @@ export default {
   margin-top: 25px;
   padding: 20px;
   width: calc(100% - 40px);
-  height: 500px;
+  height: max-content;
   background: white;
   border-radius: 15px;
 }

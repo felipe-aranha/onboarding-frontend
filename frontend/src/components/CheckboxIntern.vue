@@ -1,7 +1,7 @@
 <template>
   <div class="checkbox-container">
-    <input type="checkbox" name="check" id="check" class="box" />
-    <label for="check" class="text">{{ label }}</label>
+    <input type="checkbox" :id="label" class="box" />
+    <label :for="label" class="text">{{ label }}</label>
   </div>
 </template>
 
@@ -21,12 +21,12 @@ export default {
   align-items: center;
 
   > .box {
-    width: 22px;
-    height: 22px;
+    width: 28px;
+    height: 28px;
     background: white;
     appearance: none;
     border-radius: 5px;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.29);
+    border: 3px solid $color-checkbox-border-unchecked;
     cursor: pointer;
   }
 
@@ -34,17 +34,19 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 3px solid $color-checkbox-border-checked;
   }
 
   > .box:checked:after {
-    content: "✔️";
-    font-size: 12px;
-    color: #99a1a7;
+    content: "✔";
+    font-size: 15px;
+    color: $color-green;
   }
 
   > .text {
     margin-left: 15px;
     font-size: 15px;
+    font-family: "Raleway";
     color: $color-light-grey;
     cursor: pointer;
   }
