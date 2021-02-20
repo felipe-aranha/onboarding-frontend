@@ -2,13 +2,13 @@
   <div class="page-container">
     <img src="@/assets/images/logo-onboarding.png" class="logo" />
     <form method="post" action="" class="form-container">
-      <Input
+      <InputAuth
         type="text"
         source="user-icon.png"
         placeholder="Nome do usuário ou enderaço de e-mail"
         :onChange="onChangeEmail"
       />
-      <Input
+      <InputAuth
         type="password"
         source="lock-icon.png"
         placeholder="Senha"
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import Input from "@/components/Input.vue";
+import InputAuth from "@/components/InputAuth.vue";
 import Checkbox from "@/components/Checkbox.vue";
 
 function onChangeEmail(event) {
@@ -42,7 +42,7 @@ function onChangePassword(event) {
 export default {
   name: "Login",
   components: {
-    Input,
+    InputAuth,
     Checkbox
   },
   data: function() {

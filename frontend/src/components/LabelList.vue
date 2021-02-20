@@ -6,7 +6,10 @@
       class="time-box"
       :onClick="event => onChange(item.name)"
     >
-      <div class="time">{{ item.name }}</div>
+      <div v-if="!labelColor" class="time">{{ item.name }}</div>
+      <div v-if="labelColor" class="time" :style="`color: ${labelColor};`">
+        {{ item.name }}
+      </div>
       <div v-if="item.selected" class="bar"></div>
     </div>
   </div>
@@ -17,7 +20,8 @@ export default {
   name: "LabelList",
   props: {
     data: Array,
-    onChange: Function
+    onChange: Function,
+    labelColor: String
   }
 };
 </script>

@@ -1,9 +1,10 @@
 import { createWebHistory, createRouter } from "vue-router";
 
-import Login from "./pages/Login.vue";
-import PageNotFound from "./pages/PageNotFound.vue";
-import Dashboard from "./pages/Dashboard.vue";
-import InternLayout from "./pages/InternLayout.vue";
+import Login from "@/pages/Login.vue";
+import PageNotFound from "@/pages/PageNotFound.vue";
+import Dashboard from "@/pages/Dashboard.vue";
+import InternLayout from "@/pages/InternLayout.vue";
+import RegisterCompany from "@/pages/RegisterCompany.vue";
 
 const authRoutes = [
   {
@@ -15,6 +16,11 @@ const authRoutes = [
     path: "documents",
     name: "Documents",
     component: Dashboard
+  },
+  {
+    path: "register",
+    name: "Register Company",
+    component: RegisterCompany
   }
 ];
 
