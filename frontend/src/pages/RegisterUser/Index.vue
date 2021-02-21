@@ -1,5 +1,5 @@
 <template>
-  <h1 class="title">Cadastro - Empresas</h1>
+  <h1 class="title">Cadastro - Usuário</h1>
   <LabelList :data="menus" :onChange="setMenu" labelColor="white" />
   <section name="register-user" class="card-container">
     <Data v-if="isMenuSelected('Dados')" />

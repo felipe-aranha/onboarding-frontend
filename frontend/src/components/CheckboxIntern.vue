@@ -1,6 +1,22 @@
 <template>
   <div class="checkbox-container">
-    <input type="checkbox" :id="label" class="box" />
+    <input
+      type="checkbox"
+      :id="label"
+      class="box"
+      v-if="onChange === undefined || value === undefined"
+    />
+
+    <input
+      type="checkbox"
+      :id="label"
+      class="box"
+      @change="onChange"
+      :value="value"
+      :data-identifier="identifier"
+      v-if="onChange !== undefined && value !== undefined"
+    />
+
     <label :for="label" class="text">{{ label }}</label>
   </div>
 </template>
@@ -9,7 +25,10 @@
 export default {
   name: "Checkbox",
   props: {
-    label: String
+    label: String,
+    value: Boolean,
+    onChange: Function,
+    identifier: String
   }
 };
 </script>
