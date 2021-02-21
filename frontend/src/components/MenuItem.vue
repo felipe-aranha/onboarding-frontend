@@ -68,12 +68,14 @@ export default {
     selected: Boolean,
     childrens: Array,
     onClick: Function,
-    onClickSubMenu: Function,
-    subMenuSelected: String
+    onClickSubMenu: Function
   },
   computed: {
     collapse() {
       return this.$store.state.menu.collapse;
+    },
+    subMenuSelected() {
+      return this.$store.state.menu.subMenuSelected;
     }
   }
 };

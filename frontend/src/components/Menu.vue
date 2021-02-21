@@ -27,7 +27,6 @@
         :onClick="onClickMenu"
         :childrens="documentsSubMenu"
         :onClickSubMenu="onClickSubMenu"
-        :subMenuSelected="subMenuSelected"
       />
       <MenuItem
         name="register"
@@ -35,6 +34,8 @@
         icon="users.png"
         :selected="menuSelected === 'register'"
         :onClick="onClickMenu"
+        :childrens="registerSubMenu"
+        :onClickSubMenu="onClickSubMenu"
       />
       <MenuItem
         name="searchs"
@@ -65,7 +66,6 @@
         :onClick="onClickMenu"
         :childrens="paramsSubMenu"
         :onClickSubMenu="onClickSubMenu"
-        :subMenuSelected="subMenuSelected"
       />
       <MenuItem
         name="help"
@@ -85,50 +85,61 @@ import MenuItem from "@/components/MenuItem";
 const documentsSubMenu = [
   {
     label: "Onboarding",
-    to: "onboarding"
+    to: "/auth/onboarding"
   },
   {
     label: "Detalhe Transação",
-    to: "transaction/detail"
+    to: "/auth/transaction/detail"
   },
   {
     label: "Regras Pendentes",
-    to: "rules"
+    to: "/auth/rules"
+  }
+];
+
+const registerSubMenu = [
+  {
+    label: "Empresa",
+    to: "/auth/register/company"
+  },
+  {
+    label: "Usuário",
+    to: "/auth/register/user"
   }
 ];
 
 const paramsSubMenu = [
   {
     label: "Classificador",
-    to: "classifier"
+    to: "/auth/classifier"
   },
   {
     label: "FullOcr",
-    to: "ocr"
+    to: "/auth/ocr"
   },
   {
     label: "BackGroundCheck",
-    to: "backgroundcheck"
+    to: "/auth/backgroundcheck"
   },
   {
     label: "Análise de crédito",
-    to: "credit/analyse"
+    to: "/auth/credit/analyse"
   },
   {
     label: "Processo PF",
-    to: "process/pf"
+    to: "/auth/process/pf"
   },
   {
     label: "Datavalid",
-    to: "datavalid"
+    to: "/auth/datavalid"
   },
   {
     label: "Face Match",
-    to: "facematch"
+    to: "/auth/facematch"
   },
   {
     label: "Prova de vida",
-    to: "prooflife"
+    to: "/auth/prooflife"
   }
 ];
 
@@ -143,11 +154,12 @@ function onClickMenu(event, childrens) {
 
   if (menu !== menuSelected)
     this.$store.dispatch({ type: "menu/setSubMenu", payload: { subMenu: "" } });
+
   if (menu === menuSelected)
     this.$store.dispatch({ type: "menu/setMenu", payload: { menu: "" } });
   else this.$store.dispatch({ type: "menu/setMenu", payload: { menu } });
 
-  if (!childrens) this.$router.push(menu);
+  if (!childrens) this.$router.push(`/auth/${menu}`);
 
   const collapse = this.$store.state.menu.collapse;
   if (childrens && collapse) this.$store.dispatch("menu/toggleMenu");
@@ -157,6 +169,7 @@ function onClickSubMenu(event, childrens) {
   const target = event.target.classList.contains("item")
     ? event.target
     : event.target.parentElement;
+
   this.$store.dispatch({
     type: "menu/setSubMenu",
     payload: { subMenu: target.dataset.name }
@@ -179,7 +192,8 @@ export default {
   data: function() {
     return {
       documentsSubMenu,
-      paramsSubMenu
+      paramsSubMenu,
+      registerSubMenu
     };
   },
   computed: {
@@ -188,9 +202,6 @@ export default {
     },
     menuSelected() {
       return this.$store.state.menu.menuSelected;
-    },
-    subMenuSelected() {
-      return this.$store.state.menu.submenuSelected;
     }
   }
 };

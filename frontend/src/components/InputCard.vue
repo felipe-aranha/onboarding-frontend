@@ -8,7 +8,11 @@
     />
   </div>
 
-  <div v-if="width" class="container" :style="`width: ${width}`">
+  <div
+    v-if="width"
+    class="container"
+    :style="`width: ${width}; min-width: ${width};`"
+  >
     <label class="field-label" :for="label">{{ label }}</label>
     <input
       :id="label || randomNumber()"
@@ -45,10 +49,6 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   background: transparent;
-
-  & + .container {
-    margin-left: 20px;
-  }
 }
 
 .margin-14 {

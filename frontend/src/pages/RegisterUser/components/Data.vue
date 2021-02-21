@@ -1,19 +1,18 @@
 <template>
   <div class="title-container">
-    <h2 class="title">GERAL</h2>
+    <h2 class="title">DADOS</h2>
     <div class="bar"></div>
   </div>
   <div class="row">
-    <InputCard label="CNPJ" placeholder="CNPJ" width="265px" />
-    <InputCard
-      label="Inscrição estadual"
-      placeholder="Inscrição estadual"
-      width="265px"
-    />
+    <InputCard label="Nome" placeholder="Nome" />
+    <InputCard label="CPF" placeholder="CPF" width="265px" />
+    <SelectCard label="Status" :data="status" width="265px" />
   </div>
   <div class="row">
-    <InputCard label="Razão Social" placeholder="Razão Social" />
-    <InputCard label="Nome fantasia" placeholder="Nome fantasia" />
+    <InputCard label="E-mail" placeholder="E-mail" />
+    <InputCard label="Cargo" placeholder="Cargo" width="265px" />
+    <InputCard label="Telefone" placeholder="" width="75px" />
+    <InputCard label="" placeholder="" width="169px" />
   </div>
   <div class="row">
     <InputCard label="Número" placeholder="00" width="75px" />
@@ -24,15 +23,11 @@
   <div class="row">
     <InputCard label="Cidade" placeholder="Cidade" />
     <InputCard label="CEP" placeholder="CEP" width="265px" />
-    <SelectCard label="Estado" :data="states" width="100px;" />
-    <SelectCard label="País" :data="countries" width="169px;" />
+    <SelectCard label="Estado" :data="states" width="100px" />
+    <SelectCard label="País" :data="countries" width="169px" />
   </div>
   <div class="row">
-    <InputCard label="Telefone" placeholder="" width="75px" />
-    <InputCard label="" placeholder="" width="169px" />
-    <InputCard label="Celular" placeholder="" width="75px" />
-    <InputCard label="" placeholder="" width="169px" />
-    <InputCard label="E-mail" placeholder="" />
+    <InputCard label="Senha" placeholder="Senha" width="265px" />
   </div>
 </template>
 
@@ -43,14 +38,17 @@ import SelectCard from "@/components/SelectCard.vue";
 import states from "@/assets/mocks/states.js";
 import countries from "@/assets/mocks/countries.js";
 
+const status = ["Ativo", "Inativo"];
+
 export default {
-  name: "General",
+  name: "Data",
   components: {
     InputCard,
     SelectCard
   },
   data() {
     return {
+      status,
       states,
       countries
     };
@@ -58,7 +56,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .title-container {
   display: flex;
   flex-direction: column;

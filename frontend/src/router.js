@@ -5,6 +5,7 @@ import PageNotFound from "@/pages/PageNotFound.vue";
 import Dashboard from "@/pages/Dashboard.vue";
 import InternLayout from "@/pages/InternLayout.vue";
 import RegisterCompany from "@/pages/RegisterCompany/Index.vue";
+import RegisterUser from "@/pages/RegisterUser/Index.vue";
 
 const authRoutes = [
   {
@@ -19,8 +20,19 @@ const authRoutes = [
   },
   {
     path: "register",
+    name: "Register",
+    component: Dashboard,
+    redirect: "/auth/register/company"
+  },
+  {
+    path: "register/company",
     name: "Register Company",
     component: RegisterCompany
+  },
+  {
+    path: "register/user",
+    name: "Register User",
+    component: RegisterUser
   }
 ];
 
