@@ -67,12 +67,12 @@ export default {
   width: calc(100% - 16px);
   height: 40px;
   padding-left: 16px;
-  border: 1px solid $color-input-intern-border;
-  background: $color-input-intern-bg;
+  border: 1px solid $color-component-intern-border;
+  background: $color-component-intern-bg;
   border-radius: 5px;
 
   &::placeholder {
-    color: $color-input-intern-placeholder;
+    color: $color-component-intern-placeholder;
   }
 }
 </style>

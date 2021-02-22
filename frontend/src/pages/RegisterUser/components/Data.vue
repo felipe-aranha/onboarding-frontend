@@ -4,6 +4,20 @@
     <div class="bar"></div>
   </div>
   <div class="row">
+    <div v-if="!photo" class="photo-container">
+      <p class="photo-label">Foto</p>
+    </div>
+    <img v-if="photo" :src="photo" class="photo-container" />
+    <input
+      type="file"
+      class="hide"
+      ref="uploadInput"
+      accept="image/png, image/jpeg"
+      @change="onUploadFile"
+    />
+    <UploadButton :onClick="uploadFile" />
+  </div>
+  <div class="row">
     <InputCard label="Nome" placeholder="Nome" />
     <InputCard label="CPF" placeholder="CPF" width="265px" />
     <SelectCard label="Status" :data="status" width="265px" />
@@ -34,23 +48,43 @@
 <script>
 import InputCard from "@/components/InputCard.vue";
 import SelectCard from "@/components/SelectCard.vue";
+import UploadButton from "@/components/UploadButton.vue";
 
 import states from "@/assets/mocks/states.js";
 import countries from "@/assets/mocks/countries.js";
 
 const status = ["Ativo", "Inativo"];
 
+function uploadFile(event) {
+  event.preventDefault();
+
+  const hiddenInput = this.$refs.uploadInput;
+  hiddenInput.click();
+}
+
+function onUploadFile(event) {
+  const file = event.target.files[0];
+  console.log(file);
+  this.photo = URL.createObjectURL(file);
+}
+
 export default {
   name: "Data",
   components: {
     InputCard,
-    SelectCard
+    SelectCard,
+    UploadButton
+  },
+  methods: {
+    uploadFile,
+    onUploadFile
   },
   data() {
     return {
       status,
       states,
-      countries
+      countries,
+      photo: null
     };
   }
 };
@@ -88,5 +122,32 @@ export default {
   > .container + .container {
     margin-left: 20px;
   }
+}
+
+.row > .photo-container {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: $color-component-intern-bg;
+  border: 1px solid $color-component-intern-border;
+  object-fit: cover;
+}
+
+.row > .photo-container > .photo-label {
+  font-family: "Raleway";
+  font-size: 15px;
+  color: $color-label;
+}
+
+.row > .upload-button {
+  margin: auto 0;
+  margin-left: 20px;
+}
+
+.hide {
+  display: none;
 }
 </style>

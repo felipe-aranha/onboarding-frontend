@@ -17,10 +17,7 @@
       ref="uploadInput"
       @change="onUploadFile"
     />
-    <button class="upload-button" @click="uploadFile">
-      <img src="@/assets/icons/upload.svg" class="icon" />
-      <p class="label">Upload</p>
-    </button>
+    <UploadButton :onClick="uploadFile" />
   </div>
   <InputCard
     label="Nome de exibição"
@@ -36,6 +33,7 @@
 <script>
 import InputCard from "@/components/InputCard.vue";
 import ColorSet from "@/components/ColorSet.vue";
+import UploadButton from "@/components/UploadButton.vue";
 
 function uploadFile(event) {
   event.preventDefault();
@@ -61,7 +59,8 @@ export default {
   name: "Layout",
   components: {
     InputCard,
-    ColorSet
+    ColorSet,
+    UploadButton
   },
   methods: {
     uploadFile,
@@ -118,40 +117,19 @@ export default {
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  background: $color-input-intern-bg;
-  border: 1px solid $color-input-intern-border;
+  background: $color-component-intern-bg;
+  border: 1px solid $color-component-intern-border;
 }
 
 .row > .column > .logo-display > .logo-placeholder {
   font-family: "Raleway";
   font-size: 12px;
-  color: $color-input-intern-placeholder;
+  color: $color-component-intern-placeholder;
 }
 
 .row > .upload-button {
   margin-top: 24px;
   margin-left: 20px;
-  width: 130px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: $color-green;
-  border-radius: 20px;
-}
-
-.row > .upload-button > .icon {
-  margin-right: 10px;
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-}
-
-.row > .upload-button > .label {
-  font-family: "Raleway";
-  font-size: 15px;
-  font-weight: bold;
-  color: white;
 }
 
 .colors {
