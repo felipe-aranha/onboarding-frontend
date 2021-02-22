@@ -7,7 +7,13 @@
     <div class="column">
       <div class="row">
         <label class="area-label">Dashboard</label>
-        <button class="select-all">Selecionar tudo</button>
+        <button
+          class="select-all"
+          data-identifier="dashboard"
+          @click="onSelectAll"
+        >
+          Selecionar tudo
+        </button>
       </div>
       <CheckboxIntern
         label="Acesso ao dashboard"
@@ -18,7 +24,13 @@
 
       <div class="row">
         <label class="area-label">Documentos</label>
-        <button class="select-all">Selecionar tudo</button>
+        <button
+          class="select-all"
+          data-identifier="documents"
+          @click="onSelectAll"
+        >
+          Selecionar tudo
+        </button>
       </div>
       <CheckboxIntern
         label="Acesso ao onboarding"
@@ -41,7 +53,13 @@
 
       <div class="row">
         <label class="area-label">Cadastro</label>
-        <button class="select-all">Selecionar tudo</button>
+        <button
+          class="select-all"
+          data-identifier="register"
+          @click="onSelectAll"
+        >
+          Selecionar tudo
+        </button>
       </div>
       <CheckboxIntern
         label="Acesso ao cadastro de empresa"
@@ -59,7 +77,13 @@
     <div class="column">
       <div class="row">
         <label class="area-label">Consulta</label>
-        <button class="select-all">Selecionar tudo</button>
+        <button
+          class="select-all"
+          data-identifier="searchs"
+          @click="onSelectAll"
+        >
+          Selecionar tudo
+        </button>
       </div>
       <CheckboxIntern
         label="Acesso a consultas"
@@ -70,7 +94,13 @@
 
       <div class="row">
         <label class="area-label">Relatórios</label>
-        <button class="select-all">Selecionar tudo</button>
+        <button
+          class="select-all"
+          data-identifier="reports"
+          @click="onSelectAll"
+        >
+          Selecionar tudo
+        </button>
       </div>
       <CheckboxIntern
         label="Acesso a relatórios"
@@ -81,7 +111,13 @@
 
       <div class="row">
         <label class="area-label">Configurações</label>
-        <button class="select-all">Selecionar tudo</button>
+        <button
+          class="select-all"
+          data-identifier="settings"
+          @click="onSelectAll"
+        >
+          Selecionar tudo
+        </button>
       </div>
       <CheckboxIntern
         label="Acesso a configurações"
@@ -92,7 +128,9 @@
 
       <div class="row">
         <label class="area-label">Ajuda</label>
-        <button class="select-all">Selecionar tudo</button>
+        <button class="select-all" data-identifier="help" @click="onSelectAll">
+          Selecionar tudo
+        </button>
       </div>
       <CheckboxIntern
         label="Acesso a ajuda"
@@ -104,7 +142,13 @@
     <div class="column">
       <div class="row">
         <label class="area-label">Parâmetros</label>
-        <button class="select-all">Selecionar tudo</button>
+        <button
+          class="select-all"
+          data-identifier="params"
+          @click="onSelectAll"
+        >
+          Selecionar tudo
+        </button>
       </div>
       <CheckboxIntern
         label="Acesso ao classificador"
@@ -161,7 +205,7 @@
 <script>
 import CheckboxIntern from "@/components/CheckboxIntern.vue";
 
-const permissions = {
+const permissions = () => ({
   dashboard: {
     dashboard: false
   },
@@ -196,13 +240,36 @@ const permissions = {
     facematch: false,
     lifeProof: false
   }
-};
+});
 
 function onChangeCheckbox(event) {
-  const { value } = event.target;
+  const { checked } = event.target;
   const [group, permission] = event.target.dataset.identifier.split("/");
 
-  this.permissions[group][permission] = !!value;
+  this.permissions[group][permission] = !!checked;
+}
+
+function onSelectAll(event) {
+  const { identifier } = event.target.dataset;
+
+  const entries = Object.entries(this.permissions);
+
+  let newPermissions = {};
+
+  for (const [role, obj] of entries) {
+    if (role === identifier) {
+      const rules = Object.keys(obj);
+      let newRule = {};
+
+      rules.forEach(rule => {
+        newRule[rule] = true;
+      });
+
+      newPermissions[role] = newRule;
+    } else newPermissions[role] = obj;
+  }
+
+  this.permissions = newPermissions;
 }
 
 export default {
@@ -212,11 +279,12 @@ export default {
   },
   data() {
     return {
-      permissions
+      permissions: permissions()
     };
   },
   methods: {
-    onChangeCheckbox
+    onChangeCheckbox,
+    onSelectAll
   }
 };
 </script>

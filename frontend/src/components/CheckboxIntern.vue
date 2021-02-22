@@ -12,7 +12,7 @@
       :id="label"
       class="box"
       @change="onChange"
-      :value="value"
+      :checked="value"
       :data-identifier="identifier"
       v-if="onChange !== undefined && value !== undefined"
     />
