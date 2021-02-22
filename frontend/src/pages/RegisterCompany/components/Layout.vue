@@ -6,9 +6,10 @@
   <div class="row">
     <div class="column">
       <label class="logo-label" for="upload-button">Logo</label>
-      <div class="logo-display">
+      <div v-if="!logo" class="logo-display">
         <p class="logo-placeholder">Logo</p>
       </div>
+      <img v-if="logo" :src="logo" class="logo-display" />
     </div>
     <input
       type="file"
@@ -45,6 +46,7 @@ function uploadFile(event) {
 function onUploadFile(event) {
   const file = event.target.files[0];
   console.log(file);
+  this.logo = URL.createObjectURL(file);
 }
 
 function onSelectColorBack(color) {
@@ -67,6 +69,11 @@ export default {
     onUploadFile,
     onSelectColorBack,
     onSelectColorFront
+  },
+  data() {
+    return {
+      logo: null
+    };
   }
 };
 </script>
@@ -119,6 +126,7 @@ export default {
   border-radius: 5px;
   background: $color-component-intern-bg;
   border: 1px solid $color-component-intern-border;
+  object-fit: cover;
 }
 
 .row > .column > .logo-display > .logo-placeholder {
