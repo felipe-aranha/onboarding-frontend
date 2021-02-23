@@ -9,7 +9,7 @@
       </button>
       <div class="separator"></div>
       <NotifyIndicator :newNotification="false" />
-      <button class="button-container">
+      <button class="button-container" @click="logout">
         <img src="@/assets/icons/logout.svg" class="icon" />
       </button>
     </div>
@@ -21,12 +21,18 @@ import NotifyIndicator from "@/components/NotifyIndicator";
 
 import { mapActions } from "vuex";
 
+function logout(event) {
+  event.preventDefault();
+  this.$router.push("/login");
+}
+
 export default {
   name: "Header",
   components: {
     NotifyIndicator
   },
   methods: {
+    logout,
     ...mapActions({
       toggleMenu: "menu/toggleMenu"
     })
