@@ -6,6 +6,7 @@
       class="field"
       :placeholder="placeholder"
       @input="onChange"
+      :required="required"
     />
   </div>
 </template>
@@ -17,7 +18,8 @@ export default {
     type: String,
     source: String,
     placeholder: String,
-    onChange: Function
+    onChange: Function,
+    required: Boolean
   }
 };
 </script>

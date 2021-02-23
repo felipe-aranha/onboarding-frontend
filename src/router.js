@@ -21,7 +21,6 @@ const authRoutes = [
   {
     path: "register",
     name: "Register",
-    component: Dashboard,
     redirect: "/auth/register/company"
   },
   {
@@ -37,6 +36,7 @@ const authRoutes = [
 ];
 
 const routes = [
+  { path: "/", name: "Home", redirect: "/login" },
   { path: "/login", name: "Login", component: Login },
   { path: "/:catchAll(.*)", name: "PageNotFound", component: PageNotFound },
   {

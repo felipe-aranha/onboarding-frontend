@@ -1,18 +1,20 @@
 <template>
   <div class="page-container">
     <img src="@/assets/images/logo-onboarding.png" class="logo" />
-    <form method="post" action="" class="form-container">
+    <form method="post" class="form-container" @submit="onSubmitForm">
       <InputAuth
         type="text"
         source="user-icon.png"
         placeholder="Nome do usuário ou enderaço de e-mail"
         :onChange="onChangeEmail"
+        required
       />
       <InputAuth
         type="password"
         source="lock-icon.png"
         placeholder="Senha"
         :onChange="onChangePassword"
+        required
       />
       <div class="buttons-container">
         <Checkbox label="Lembra de mim" />
@@ -39,6 +41,11 @@ function onChangePassword(event) {
   this.password = value;
 }
 
+function onSubmitForm(event) {
+  event.preventDefault();
+  this.$router.push("/auth/dashboard");
+}
+
 export default {
   name: "Login",
   components: {
@@ -53,7 +60,8 @@ export default {
   },
   methods: {
     onChangeEmail,
-    onChangePassword
+    onChangePassword,
+    onSubmitForm
   }
 };
 </script>

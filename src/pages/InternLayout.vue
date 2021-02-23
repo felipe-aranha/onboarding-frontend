@@ -81,7 +81,7 @@ export default {
     padding: 0 60px;
     padding-top: 15px;
     display: block;
-    height: 100%;
+    height: calc(100% - 15px);
     background: $color-bg-auth;
   }
 
