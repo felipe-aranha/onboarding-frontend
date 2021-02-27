@@ -42,6 +42,7 @@
   </div>
   <div class="row">
     <InputCard label="Senha" placeholder="Senha" width="265px" />
+    <SelectCard label="Unidade lotação" :data="companies" width="265px" />
   </div>
 </template>
 
@@ -54,6 +55,8 @@ import states from "@/assets/mocks/states.js";
 import countries from "@/assets/mocks/countries.js";
 
 const status = ["Ativo", "Inativo"];
+
+const companies = ["Matriz", "Empresa 1"];
 
 function uploadFile(event) {
   event.preventDefault();
@@ -84,6 +87,7 @@ export default {
       status,
       states,
       countries,
+      companies,
       photo: null
     };
   }
