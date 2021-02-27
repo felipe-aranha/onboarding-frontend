@@ -34,26 +34,44 @@
     <InputCard label="" placeholder="" width="169px" />
     <InputCard label="E-mail" placeholder="" />
   </div>
+  <div class="row">
+    <CheckboxIntern label="Unidade raiz" :onChange="isRootUnit" />
+    <SelectCard v-if="rootUnit" :data="companies" width="265px" />
+  </div>
 </template>
 
 <script>
 import InputCard from "@/components/InputCard.vue";
 import SelectCard from "@/components/SelectCard.vue";
+import CheckboxIntern from "@/components/CheckboxIntern.vue";
 
 import states from "@/assets/mocks/states.js";
 import countries from "@/assets/mocks/countries.js";
+
+const companies = ["Matriz", "Empresa 1"];
+
+function isRootUnit(event) {
+  const { checked } = event.target;
+  this.rootUnit = checked;
+}
 
 export default {
   name: "General",
   components: {
     InputCard,
-    SelectCard
+    SelectCard,
+    CheckboxIntern
   },
   data() {
     return {
       states,
-      countries
+      countries,
+      companies,
+      rootUnit: false
     };
+  },
+  methods: {
+    isRootUnit
   }
 };
 </script>
@@ -89,6 +107,12 @@ export default {
 
   > .container + .container {
     margin-left: 20px;
+  }
+
+  > .checkbox-container {
+    margin-right: 20px;
+    width: max-content;
+    height: 55px;
   }
 }
 </style>
