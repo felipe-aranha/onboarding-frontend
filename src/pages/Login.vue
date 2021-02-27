@@ -5,7 +5,7 @@
       <InputAuth
         type="text"
         source="user-icon.png"
-        placeholder="Nome do usuário ou enderaço de e-mail"
+        placeholder="Nome do usuário ou endereço de e-mail"
         :onChange="onChangeEmail"
         required
       />
@@ -18,7 +18,12 @@
       />
       <div class="buttons-container">
         <Checkbox label="Lembra de mim" />
-        <button class="submit-button">ACESSO</button>
+        <SubmitButtonAuth label="ACESSO" />
+      </div>
+      <div class="links-container">
+        <router-link to="/recover/account" class="recover-account">
+          Esqueci minha senha
+        </router-link>
       </div>
     </form>
     <div class="brand-container">
@@ -29,6 +34,7 @@
 
 <script>
 import InputAuth from "@/components/InputAuth.vue";
+import SubmitButtonAuth from "@/components/SubmitButtonAuth.vue";
 import Checkbox from "@/components/Checkbox.vue";
 
 function onChangeEmail(event) {
@@ -50,7 +56,8 @@ export default {
   name: "Login",
   components: {
     InputAuth,
-    Checkbox
+    Checkbox,
+    SubmitButtonAuth
   },
   data: function() {
     return {
@@ -98,23 +105,26 @@ body,
 
     > .buttons-container {
       margin-top: 40px;
+      margin-bottom: 40px;
       display: flex;
       justify-content: space-between;
     }
 
-    > .buttons-container > .submit-button {
-      width: 190px;
-      min-width: 190px;
-      height: 50px;
+    > .links-container {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 17px;
-      font-weight: bold;
-      color: white;
-      background: $color-primary;
-      border-radius: 25px;
-      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.29);
+
+      > .recover-account {
+        text-decoration: none;
+        color: $color-label;
+        font-size: 15px;
+        font-family: "Raleway";
+      }
+
+      > .recover-account:hover {
+        color: $color-medium-purple;
+      }
     }
   }
 

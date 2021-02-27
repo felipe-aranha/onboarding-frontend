@@ -6,6 +6,7 @@ import Dashboard from "@/pages/Dashboard.vue";
 import InternLayout from "@/pages/InternLayout.vue";
 import RegisterCompany from "@/pages/RegisterCompany/Index.vue";
 import RegisterUser from "@/pages/RegisterUser/Index.vue";
+import RecoverAccount from "@/pages/RecoverAccount.vue";
 
 const authRoutes = [
   {
@@ -38,6 +39,11 @@ const authRoutes = [
 const routes = [
   { path: "/", name: "Home", redirect: "/login" },
   { path: "/login", name: "Login", component: Login },
+  {
+    path: "/recover/account",
+    name: "Recover Account",
+    component: RecoverAccount
+  },
   { path: "/:catchAll(.*)", name: "PageNotFound", component: PageNotFound },
   {
     path: "/auth",
